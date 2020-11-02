@@ -11,6 +11,8 @@ import {
   Heading,
 } from 'gestalt';
 import 'gestalt/dist/gestalt.css';
+import api from '../../api/index';
+
 
 const SignIn = () => {
   const [email, setEmail] = useState('');

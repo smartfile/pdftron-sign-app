@@ -18,18 +18,8 @@ import { setUser, selectUser } from './firebase/firebaseSlice';
 import './App.css';
 
 const App = () => {
-  const user = useSelector(selectUser);
+  const user = {'id': 1, 'username': 'administator', 'email': "administrator@smartfile.com"}
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    auth.onAuthStateChanged(async userAuth => {
-      if (userAuth) {
-        const user = await generateUserDocument(userAuth);
-        const { uid, displayName, email, photoURL } = user;
-        dispatch(setUser({ uid, displayName, email, photoURL }));
-      }
-    });
-  }, [auth]);
 
   return user ? (
     <div>

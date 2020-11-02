@@ -15,13 +15,13 @@ import 'gestalt/dist/gestalt.css';
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [displayName, setDisplayName] = useState('');
+  const [username, setDisplayName] = useState('');
   const [error, setError] = useState(null);
 
   const createUserWithEmailAndPasswordHandler = async (event, email, password) => {
     try{
       const {user} = await auth.createUserWithEmailAndPassword(email, password);
-      generateUserDocument(user, {displayName});
+      generateUserDocument(user, {username});
     }
     catch(error){
       setError('Error Signing up with email and password');
@@ -42,11 +42,11 @@ const SignUp = () => {
         </Box>
         <Box padding={2}>
           <TextField
-            id="displayName"
+            id="username"
             onChange={event => setDisplayName(event.value)}
             placeholder="Enter your name"
             label="Name"
-            value={displayName}
+            value={username}
             type="text"
           />
         </Box>

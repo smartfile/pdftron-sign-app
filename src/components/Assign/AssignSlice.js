@@ -18,6 +18,6 @@ export const AssignSlice = createSlice({
 
 export const { addSignee, resetSignee } = AssignSlice.actions;
 
-export const selectAssignees = state => state.assign.signees;
+export const selectAssignees = [{'id': 2, 'username': 'user1', 'email': "administrator1@smartfile.com"}, {'id': 2, 'username': 'user2', 'email': "administrator2@smartfile.com"}];
 
 export default AssignSlice.reducer;

@@ -8,7 +8,7 @@ import { setDocToView } from '../ViewDocument/ViewDocumentSlice';
 import { navigate } from '@reach/router';
 
 const SignedList = () => {
-  const user = useSelector(selectUser);
+  const user = selectUser;
   const { email } = user;
   const [docs, setDocs] = useState([]);
   const [show, setShow] = useState(true);
@@ -22,7 +22,7 @@ const SignedList = () => {
       setShow(false);
     }
     setTimeout(getDocs, 1000);
-  }, []);
+  });
 
   return (
     <div>

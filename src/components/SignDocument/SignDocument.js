@@ -14,7 +14,7 @@ const SignDocument = () => {
   const [annotPosition, setAnnotPosition] = useState(0);
 
   const doc = useSelector(selectDocToSign);
-  const user = useSelector(selectUser);
+  const user = selectUser;
   const { docRef, docId } = doc;
   const { email } = user;
 

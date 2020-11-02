@@ -24,15 +24,16 @@ const PrepareDocument = () => {
 
   const dispatch = useDispatch();
 
-  const assignees = useSelector(selectAssignees);
+  const assignees = selectAssignees;
+  console.log(assignees)
   const assigneesValues = assignees.map(user => {
-    return { value: user.email, label: user.name };
+    return { value: user.email, label: user.username };
   });
   let initialAssignee =
     assigneesValues.length > 0 ? assigneesValues[0].value : '';
   const [assignee, setAssignee] = useState(initialAssignee);
 
-  const user = useSelector(selectUser);
+  const user = selectUser;
   const { uid, email } = user;
 
   const viewer = useRef(null);
@@ -40,6 +41,7 @@ const PrepareDocument = () => {
 
   // if using a class, equivalent of componentDidMount
   useEffect(() => {
+    console.log('start')
     WebViewer(
       {
         path: 'webviewer',
@@ -69,15 +71,18 @@ const PrepareDocument = () => {
       iframeDoc.addEventListener('drop', e => {
         drop(e, instance);
       });
-
       filePicker.current.onchange = e => {
+        console.log('picker')
         const file = e.target.files[0];
         if (file) {
           instance.loadDocument(file);
         }
       };
+      console.log('hello')
+      console.log(instance)
+      instance.loadDocument('https://app.smartfile.com/api/2/path/data/test.pdf');
     });
-  }, []);
+  });
 
   const applyFields = async () => {
     const { Annotations, docViewer } = instance;

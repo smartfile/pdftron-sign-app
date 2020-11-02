@@ -16,9 +16,9 @@ import { addSignee, selectAssignees } from './AssignSlice';
 
 const Assign = () => {
   const [email, setEmail] = useState('');
-  const [displayName, setDisplayName] = useState('');
+  const [username, setDisplayName] = useState('');
   const [showToast, setShowToast] = useState(false);
-  const assignees = useSelector(selectAssignees);
+  const assignees = selectAssignees;
   const dispatch = useDispatch();
 
   const prepare = () => {
@@ -48,11 +48,11 @@ const Assign = () => {
           </Box>
           <Box padding={2}>
             <TextField
-              id="displayName"
+              id="username"
               onChange={event => setDisplayName(event.value)}
               placeholder="Enter recipient's name"
               label="Name"
-              value={displayName}
+              value={username}
               type="text"
             />
           </Box>
@@ -69,7 +69,7 @@ const Assign = () => {
           <Box padding={2}>
             <Button
               onClick={event => {
-                addUser(displayName, email);
+                addUser(username, email);
               }}
               text="Add user"
               color="blue"

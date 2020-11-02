@@ -16,7 +16,7 @@ const ProfilePage = () => {
   useEffect(() => {
     dispatch(resetDocToView());
     dispatch(resetDocToSign());
-  }, []);
+  });
 
   return (
     <div>

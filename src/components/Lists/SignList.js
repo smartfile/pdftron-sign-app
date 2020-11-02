@@ -8,7 +8,7 @@ import { setDocToSign } from '../SignDocument/SignDocumentSlice';
 import { navigate } from '@reach/router';
 
 const SignList = () => {
-  const user = useSelector(selectUser);
+  const user = selectUser;
   const { email } = user;
 
   const [docs, setDocs] = useState([]);
