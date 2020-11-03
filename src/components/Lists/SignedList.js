@@ -15,14 +15,6 @@ const SignedList = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    async function getDocs() {
-      const docsToView = await searchForDocumentsSigned(email);
-      setDocs(docsToView);
-      setShow(false);
-    }
-    setTimeout(getDocs, 1000);
-  });
 
   return (
     <div>

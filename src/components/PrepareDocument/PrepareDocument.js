@@ -42,46 +42,49 @@ const PrepareDocument = () => {
   // if using a class, equivalent of componentDidMount
   useEffect(() => {
     console.log('start')
-    WebViewer(
-      {
-        path: 'webviewer',
-        disabledElements: [
-          'toolsButton',
-          'searchButton',
-          'menuButton',
-          'contextMenuPopup',
-          'freeHandToolGroupButton',
-          'textToolGroupButton',
-          'shapeToolGroupButton',
-          'signatureToolButton',
-          'eraserToolButton',
-          'stickyToolButton',
-          'freeTextToolButton',
-          'miscToolGroupButton',
-        ],
-      },
-      viewer.current,
-    ).then(instance => {
-      const { iframeWindow } = instance;
+    var webviewer = document.getElementsByClassName("webviewer")
+    if(webviewer.length != 0 && webviewer[0].children.length == 0){
+      WebViewer(
+        {
+          path: 'webviewer',
+          disabledElements: [
+            'toolsButton',
+            'searchButton',
+            'menuButton',
+            'contextMenuPopup',
+            'freeHandToolGroupButton',
+            'textToolGroupButton',
+            'shapeToolGroupButton',
+            'signatureToolButton',
+            'eraserToolButton',
+            'stickyToolButton',
+            'freeTextToolButton',
+            'miscToolGroupButton',
+          ],
+        },
+        viewer.current,
+      ).then(instance => {
+        const { iframeWindow } = instance;
 
-      setInstance(instance);
+        setInstance(instance);
 
-      const iframeDoc = iframeWindow.document.body;
-      iframeDoc.addEventListener('dragover', dragOver);
-      iframeDoc.addEventListener('drop', e => {
-        drop(e, instance);
+        const iframeDoc = iframeWindow.document.body;
+        iframeDoc.addEventListener('dragover', dragOver);
+        iframeDoc.addEventListener('drop', e => {
+          drop(e, instance);
+        });
+        filePicker.current.onchange = e => {
+          console.log('picker')
+          const file = e.target.files[0];
+          if (file) {
+            instance.loadDocument(file);
+          }
+        };
+        console.log('hello')
+        console.log(instance)
+        // instance.loadDocument('https://app.smartfile.com/api/2/path/data/test.pdf');
       });
-      filePicker.current.onchange = e => {
-        console.log('picker')
-        const file = e.target.files[0];
-        if (file) {
-          instance.loadDocument(file);
-        }
-      };
-      console.log('hello')
-      console.log(instance)
-      instance.loadDocument('https://app.smartfile.com/api/2/path/data/test.pdf');
-    });
+    }
   });
 
   const applyFields = async () => {
